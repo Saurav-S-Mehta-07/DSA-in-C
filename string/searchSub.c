@@ -1,3 +1,4 @@
+//WAP to find the position of substring in a string
 #include<stdio.h>
 #include<string.h>
 int main(){
