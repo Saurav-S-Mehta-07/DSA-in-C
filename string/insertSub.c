@@ -30,7 +30,6 @@ int main(){
              pos = -1;
              i--;
         }
-
         else{
             newStr[j] = str[i];
             j++;
