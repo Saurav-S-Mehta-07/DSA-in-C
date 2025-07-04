@@ -2,7 +2,8 @@
 #include<stdio.h>
 #include<string.h>
 int main(){
-    char str[50], sub[20];
+    char str[50];
+    char sub[20];
 
     int i = 0, j,k,found = 0;
 
