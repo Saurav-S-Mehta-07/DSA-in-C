@@ -1,3 +1,4 @@
+//Wap to replace a sub string from a string
 #include<stdio.h>
 int main(){
     char str[200],pat[20],new_str[200],rep_pat[100];
