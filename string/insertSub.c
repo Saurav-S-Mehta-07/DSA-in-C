@@ -27,8 +27,6 @@ int main(){
                 j++;
                 k++;
              }
-             pos = -1;
-             i--;
         }
         else{
             newStr[j] = str[i];
@@ -37,6 +35,6 @@ int main(){
         i++;
     }
     newStr[j]='\0';
-    printf("%s is inserted in %s and result is: \n %s",subStr,str,newStr);
+    printf("result is: %s",newStr);
     return 0;
 }
