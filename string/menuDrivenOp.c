@@ -75,7 +75,7 @@ void dltSub(){
     }
     
     if(found==0){
-       printf("sub is string not found");
+       printf("sub string is not found");
     }else{
        newText[n]='\0';
        printf("the new string is: %s",newText);

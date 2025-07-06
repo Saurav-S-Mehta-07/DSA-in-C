@@ -1,7 +1,5 @@
 //WAP to change the diagonal element to zero.
 
-
-
 #include<stdio.h>
 int main(){
     int i,j, arr[3][3];
