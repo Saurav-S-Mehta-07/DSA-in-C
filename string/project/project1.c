@@ -1,4 +1,46 @@
+/*insert, delete replace substring*/
+
 #include<stdio.h>
+
+void insert();
+void dltSub();
+void replace();
+
+int main(){
+    
+    printf("\n******MENU******\n");
+    printf("1> insert sub string.\n");
+    printf("2> delete substring : \n");
+    printf("3> replace substring: \n");
+    printf("4> exit\n");
+
+    int choice;
+    
+    while(1)
+    {
+        printf("\nenter choice: ");
+        scanf("%d",&choice);
+       switch(choice)
+       {
+         case 1: insert();
+                 break;
+         case 2: dltSub();
+                 break;
+         case 3: replace();
+                 break;
+         case 0: return -1;
+                 break;
+         default: printf("invalid choice!");
+                 
+       }    
+       
+       
+    }
+
+
+
+    return 0;
+}
 
 void insert(){
 
@@ -126,41 +168,4 @@ void replace(){
         printf("new String is : %s\n",newStr);
     }
     
-}
-
-
-int main(){
-    
-    printf("\n******MENU******\n");
-    printf("1> insert sub string.\n");
-    printf("2> delete substring : \n");
-    printf("3> replace substring: \n");
-    printf("4> exit\n");
-
-    int choice;
-    
-    while(1)
-    {
-        printf("\nenter choice: ");
-        scanf("%d",&choice);
-       switch(choice)
-       {
-         case 1: insert();
-                 break;
-         case 2: dltSub();
-                 break;
-         case 3: replace();
-                 break;
-         case 0: return -1;
-                 break;
-         default: printf("invalid choice!");
-                 
-       }    
-       
-       
-    }
-
-
-
-    return 0;
 }
