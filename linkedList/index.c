@@ -41,7 +41,7 @@ int main(){
     // start = insert_after(start);
     // start = insert_before(start);
 
-    start = delete_beg(start);
+    start = delete_end(start);
 
     start = display(start);
     // start = search(start);
@@ -222,11 +222,23 @@ Node *insert_before(Node *start){
 }
 
 Node *delete_beg(Node *start){
+    ptr = start;
     start = start->next;
+    printf("\ndeleted value is: %d",ptr->data);
+    free(ptr);
     return start;
 }
 
 Node *delete_end(Node *start){
-    
+       Node *pptr;
+       ptr = pptr = start;
+       while(ptr->next!=NULL){
+        pptr = ptr;
+        ptr = ptr->next;
+       }
+       printf("\ndeleted value is: %d",ptr->data);
+       free(ptr);
+       pptr->next = NULL;
+       return start;
 }
 
