@@ -56,7 +56,7 @@ void create(){
 }
 
 void display(){ 
-    printf("\n data you entered are: \n");
+    printf("\n entered data items are \n");
     ptr = start;
     while(ptr != NULL){
         printf("\t%d ",ptr->data);
