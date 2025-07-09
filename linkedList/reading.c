@@ -6,10 +6,28 @@ typedef struct node{
     struct node *next;
 }Node;
 
+Node *start = NULL;
+Node *ptr;
+
+
+void create();
+
+void display();
+
+void search();
+
 
 int main(){
-    Node *start, *ptr, *newNode;
-    start = NULL;
+
+    create();
+    display();
+    search();
+
+    return 0;
+}
+
+void create(){
+    Node *newNode;
 
     int data;
     printf("enter -1 to exit \n");
@@ -36,12 +54,41 @@ int main(){
         printf("enter data: ");
         scanf("%d",&data);
     }
+}
 
+void display(){ 
     printf("\n data you entered are: \n");
     ptr = start;
     while(ptr != NULL){
         printf("\t%d ",ptr->data);
         ptr = ptr->next;
     }
-    return 0;
 }
+
+void search(){
+    int data;
+    printf("\nenter data item: ");
+    scanf("%d",&data);
+
+    ptr = start;
+
+    Node *pos = NULL;
+
+    while(ptr!=NULL)
+    {
+        if(ptr->data == data)
+        {
+            pos = ptr;
+            break;
+        }
+        ptr = ptr->next;
+    }
+    if(pos==NULL){
+        printf("data item not found in list\n");
+    }else{
+        printf("found in list and stored in pos(%d):%d",pos,pos->data);
+    }
+
+}
+
+
