@@ -28,7 +28,6 @@ int main(){
 
 void create(){
     Node *newNode;
-
     int data;
     printf("enter -1 to exit \n");
     printf("enter data: ");
