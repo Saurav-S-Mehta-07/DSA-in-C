@@ -35,9 +35,7 @@ int main()
              printf("enter 2nd distance in kms and meters: ");
              scanf("%d %d",&d2.kms, &d2.mtrs);
              printf("Created\n");
-             break;
-
-    case 2:  if(d1.mtrs>=1000){
+               if(d1.mtrs>=1000){
                d1.kms = d1.kms + (d1.mtrs/1000);
                d1.mtrs = d1.mtrs%1000;
              }
@@ -45,7 +43,9 @@ int main()
                 d2.kms = d2.kms + (d2.mtrs/1000);
                d2.mtrs = d2.mtrs%1000;
             }
-             printf("1st distance is : %dkm %dm.\n",d1.kms, d1.mtrs);
+             break;
+
+    case 2:  printf("1st distance is : %dkm %dm.\n",d1.kms, d1.mtrs);
              printf("2nd distance is : %dkm %dm.\n",d2.kms, d2.mtrs);
              break;
 
