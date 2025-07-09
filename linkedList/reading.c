@@ -70,9 +70,7 @@ void search(){
     scanf("%d",&data);
 
     ptr = start;
-
     Node *pos = NULL;
-
     while(ptr!=NULL)
     {
         if(ptr->data == data)
@@ -85,7 +83,7 @@ void search(){
     if(pos==NULL){
         printf("data item not found in list\n");
     }else{
-        printf("found in list and stored in pos(%d):%d",pos,pos->data);
+        printf("found in list and that item stored at : %d",pos);
     }
 
 }
