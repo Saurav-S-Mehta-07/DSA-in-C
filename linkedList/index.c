@@ -26,6 +26,9 @@ Node *insert_before(Node *);
 
 Node *delete_beg(Node *);
 
+Node *delete_end(Node *);
+
+
 
 
 int main(){
@@ -35,8 +38,11 @@ int main(){
     // start = search(start);
     // start = insert_beg(start);
     // start = insert_end(start);
-    start = insert_after(start);
+    // start = insert_after(start);
     // start = insert_before(start);
+
+    start = delete_beg(start);
+
     start = display(start);
     // start = search(start);
 
@@ -214,3 +220,13 @@ Node *insert_before(Node *start){
 
          return start;
 }
+
+Node *delete_beg(Node *start){
+    start = start->next;
+    return start;
+}
+
+Node *delete_end(Node *start){
+    
+}
+
