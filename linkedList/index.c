@@ -24,6 +24,8 @@ Node *insert_after(Node *);
 
 Node *insert_before(Node *);
 
+Node *delete_beg(Node *);
+
 
 
 int main(){
