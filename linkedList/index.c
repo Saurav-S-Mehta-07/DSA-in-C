@@ -9,7 +9,6 @@ typedef struct node{
 Node *start = NULL;
 Node *ptr;
 
-
 Node  *create(Node *);
 
 Node *display(Node *);
@@ -28,38 +27,113 @@ Node *delete_beg(Node *);
 
 Node *delete_end(Node *);
 
+Node *delete_node(Node *);
 
+Node *delete_list(Node *);
+
+Node *delete_after(Node *);
+
+Node *sort_list(Node *);
+
+void feedback();
 
 
 int main(){
 
-    start = create(start);
-    start = display(start);
-    // start = search(start);
-    // start = insert_beg(start);
-    // start = insert_end(start);
-    // start = insert_after(start);
-    // start = insert_before(start);
+    printf("\n        ************************************************************************");
+    printf("\n        *                           MENU                                       *");
+    printf("\n        *                                                                      *");
+    printf("\n        *  1  -> create         2  -> display          3  -> insert beginning  *");
+    printf("\n        *                                                                      *");
+    printf("\n        *  4  -> insert end     5  -> insert before    6  -> insert after      *");
+    printf("\n        *                                                                      *");
+    printf("\n        *  7  -> delete beg     8  -> delete end       9  ->delete node        *");
+    printf("\n        *                                                                      *");
+    printf("\n        *  10 -> delete after   11 -> delete list      12 -> sort list         *");
+    printf("\n        *                                                                      *");
+    printf("\n        *  13 -> search data    0  -> exit                                     *");
+    printf("\n        ************************************************************************\n");
 
-    start = delete_end(start);
 
-    start = display(start);
-    // start = search(start);
+    int choice;
+    printf("\nenter choice: ");
+    scanf("%d",&choice);
 
+    while(choice!=0)
+    {
+        switch(choice)
+        {
+            case 1: printf("\nCREATE LIST");
+                    start = create(start);
+                    break;
+            case 2: start = display(start);
+                    printf("\n");
+                    break;  
+            case 3: printf("\nNEW NODE WILL BE INSERTED AT THE BEGINING OF LIST\n");
+                    start = insert_beg(start);
+                    break;
+            case 4: printf("\nNEW NODE WILL BE INSERTED AT THE END OF THE LIST\n");
+                    start = insert_end(start);
+                    break;
+            case 5: printf("\nNEW NODE WILL BE INSERTED  BEFORE A NODE IN THE LIST\n");
+                    start = insert_before(start);
+                    break;
+            case 6: printf("\nNEW NODE WILL BE INSERTED AFTER A NODE IN THE LIST\n");
+                    start = insert_after(start);
+                    break;
+            case 7: printf("\nNODE DELETED FROM THE BEGINING OF THE LIST\n");
+                    start = delete_beg(start);
+                    break;
+            case 8: printf("\nNODE DELETED FROM THE END OF THE LIST\n");
+                    start = delete_end(start);
+                    break;
+            case 9: printf("\nA NODE WILL BE DELETED FROM A LIST\n");
+                    start = delete_node(start);
+                    break;
+            case 10: printf("\nA NODE WILL BE DELETED AFTER A NODE IN THE LIST\n");
+                    start = delete_after(start);
+                    break;
+            case 11: printf("\nTHE ENTIRE LIST WILL BE DELETED\n");
+                    start = delete_list(start);
+                    break;
+            case 12: printf("\nLIST WILL BE SORTED\n");
+                    start = sort_list(start);
+                    break;
+            case 13: printf("\nA NODE WILL BE SEARCHED IN THE LIST\n");
+                     start = search(start);
+                     break;
+            default: printf("\n INVALID CHOICE!\n");
+        }
+       printf("\nenter choice: ");
+       scanf("%d",&choice);
+    }
 
+    getchar();
+    if(choice==0)
+    {
+        printf("\n          code by: Saurav S Mehta        16-07-2025");
+        printf("\n\n         \"Thank You! \"\n");
+    }
 
     return 0;
 }
 
 Node *create(Node *start){
+    start = delete_list(start);
     Node *new_node;
     int data;
-    printf("enter -1 to exit \n");
-    printf("enter data: ");
+    printf("\nenter -1 to exit \n");
+    printf("enter data item : ");
     scanf("%d",&data);
 
     while(data!=-1){
         new_node = (Node *) malloc(sizeof(Node));
+
+        if(new_node==NULL){
+             printf("\noverflow...");
+             return start;
+        }
+
         new_node->data= data;
 
         if(start == NULL)
@@ -75,15 +149,27 @@ Node *create(Node *start){
             new_node->next = NULL;
         }
 
-        printf("enter data: ");
+        printf("enter data item: ");
         scanf("%d",&data);
     }
 
+    if(start==NULL){
+        printf("\nYOU ENTERED NO DATA ELEMENTS FOR LIST\n");
+        return start;
+    }
+
+    printf("\nLIST CREATED\n");
     return start;
 }
 
 Node *display(Node *start){ 
-    printf("\n entered data items are \n");
+
+    if(start==NULL){
+        printf("\nLIST is empty.");
+        return start;
+    }
+
+    printf("\nLIST: ");
     ptr = start;
     while(ptr != NULL){
         printf("\t%d ",ptr->data);
@@ -93,8 +179,14 @@ Node *display(Node *start){
 }
 
 Node *search(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
+
     int data;
-    printf("\nenter data item: ");
+    printf("\nenter data item to search: ");
     scanf("%d",&data);
 
     ptr = start;
@@ -109,17 +201,25 @@ Node *search(Node *start){
         ptr = ptr->next;
     }
     if(pos==NULL){
-        printf("data item not found in list\n");
+        printf("**data item not found in list\n");
     }else{
-        printf("found in list and that item stored at : %d",pos);
+        printf("**found in list and that item stored at position: %d",pos);
     }
-   return start;
+
+    printf("\nNODE SEARCHED\n");
+    return start;
 }
 
 Node *insert_beg(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
+
     Node *new_node;
     int data;
-    printf("\nenter data to insert at begining: ");
+    printf("\nenter data item to insert at begining of list: ");
     scanf("%d",&data);
 
     new_node = (Node *) malloc(sizeof(Node));
@@ -136,14 +236,22 @@ Node *insert_beg(Node *start){
 
     start = new_node;
 
+    printf("\nNEW NODE INSERTED AT BEGINING OF LIST\n");
+    
     return start;
 }
 
 Node *insert_end(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
+
     Node *new_node;
     new_node = (Node *)malloc(sizeof(Node));
     int data;
-    printf("\nenter data:");
+    printf("\nenter data item to insert at end of list: ");
     scanf("%d",&data);
 
     new_node->data = data;
@@ -155,16 +263,24 @@ Node *insert_end(Node *start){
     }
     ptr->next = new_node;
 
+    printf("\nNEW NODE INSERTED AT END OF THE LIST\n");
+
     return start;
 };
 
 Node *insert_after(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
+
       Node *new_node, *pptr;
       int val,data;
-      printf("\netner Value: ");
+      printf("\netner data item from the list after which you want to insert: ");
       scanf("%d",&val);
 
-      printf("enter data: ");
+      printf("enter new data item to insert: ");
       scanf("%d",&data);
 
       new_node = (Node *)malloc(sizeof(Node));
@@ -175,34 +291,43 @@ Node *insert_after(Node *start){
 
       while(pptr->data != val){
         if(pptr->next==NULL){
-        printf("\ndata item not in list");
-        return start;
+         printf("\nthe data item you entered not in the list");
+         return start;
         }
         pptr = ptr;
         ptr = ptr->next;
       }
       pptr->next = new_node;
       new_node->next = ptr;
+    
+      printf("\nNEW NODE INSERTED IN THE LIST\n");
+
       return start;
 }
 
 Node *insert_before(Node *start){
+
+        if(start == NULL){
+           printf("\n**List is empty, please create it first!\n");
+           return start;
+        }
+
          Node *new_node, *pptr;
          pptr = ptr = start;
 
          new_node = (Node *)malloc(sizeof(Node));
 
          int val, data;
-         printf("\nenter val: ");
+         printf("\nenter data item from the list before which you want to insert: ");
          scanf("%d",&val);
-         printf("enter data: ");
+         printf("enter new data item to insert : ");
          scanf("%d",&data);
 
          new_node->data = data;
 
          while(ptr->data != val){
             if(ptr->next==NULL){
-                printf("\ndata item not in list");
+                printf("\nthe data item you entered  not in the list");
                 return start;
             }
             pptr = ptr;
@@ -217,11 +342,19 @@ Node *insert_before(Node *start){
              pptr->next = new_node;
              new_node->next = ptr;
          }
+      
+         printf("\nNEW NODE INSERTED IN THE LIST\n");
 
          return start;
 }
 
 Node *delete_beg(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
+
     ptr = start;
     start = start->next;
     printf("\ndeleted value is: %d",ptr->data);
@@ -230,6 +363,11 @@ Node *delete_beg(Node *start){
 }
 
 Node *delete_end(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
        Node *pptr;
        ptr = pptr = start;
        while(ptr->next!=NULL){
@@ -242,3 +380,129 @@ Node *delete_end(Node *start){
        return start;
 }
 
+Node *delete_node(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
+
+    Node *pptr;
+    int val;
+    printf("\nenter the data item, which you want to delete from the list : ");
+    scanf("%d",&val);
+
+    pptr = ptr = start;
+
+    if(ptr->data == val){
+        start = delete_beg(start);
+        return start;
+    }
+
+    else{
+         while(ptr->data != val){
+
+                pptr = ptr;
+                ptr = ptr->next;
+
+                if(ptr==NULL)
+                {
+                    printf("\n**the data item you entered for deletion is not in the list\n");
+                    return start;
+                }
+
+         }
+         pptr->next = ptr->next;
+         printf("\ndeleted element is: %d.",ptr->data);
+         free(ptr);
+    }
+
+    printf("\nNODE DELETED FROM LIST\n");
+    return start;
+}
+
+Node *delete_list(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
+
+    ptr = start;
+
+    while(ptr!=NULL){
+        ptr = ptr->next;
+        free(start);
+        start = ptr;
+    }
+
+    printf("\nENTIRE LIST DELETED\n");
+
+    return start;
+}
+
+Node *delete_after(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
+
+    Node *pptr;
+    pptr = ptr = start;
+
+    int val;
+    printf("\nenter data item from the list, after which you want to delete data item: ");
+    scanf("%d",&val);
+
+    while(pptr->data!=val){
+         pptr = ptr;
+
+         if(pptr==NULL){
+            printf("\n**data item you entered from the list is not in the list.\n");
+         }
+
+         ptr = ptr->next;
+
+    }
+    pptr->next = ptr->next;
+    free(ptr);
+    
+    printf("\nNODE DELETED FROM THE LIST\n");
+   
+    return start;
+}
+
+Node *sort_list(Node *start){
+
+    if(start == NULL){
+        printf("\n**List is empty, please create it first!\n");
+        return start;
+    }
+
+
+      Node *ptr1, *ptr2;
+      int temp;
+
+      ptr1 = start;
+
+      while(ptr1!=NULL){
+
+        ptr2 = ptr1->next;
+
+        while(ptr2!=NULL)
+        {
+            if(ptr1->data > ptr2->data){
+                temp = ptr1->data;
+                ptr1->data = ptr2->data;
+                ptr2->data = temp;
+            }
+            ptr2 = ptr2->next;
+        }
+        ptr1 = ptr1->next;
+      }
+
+      printf("\nLIST SORTED\n");
+      return start;
+
+}
