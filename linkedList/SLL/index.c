@@ -1,3 +1,5 @@
+//Singly Linked list (SLL)-> INSERTION, DELETION, TRAVERSING, SORTING, SEARCHING
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -34,9 +36,6 @@ Node *delete_list(Node *);
 Node *delete_after(Node *);
 
 Node *sort_list(Node *);
-
-void feedback();
-
 
 int main(){
 
