@@ -40,19 +40,19 @@ void feedback();
 
 int main(){
 
-    printf("\n        ************************************************************************");
-    printf("\n        *                           MENU                                       *");
-    printf("\n        *                                                                      *");
-    printf("\n        *  1  -> create         2  -> display          3  -> insert beginning  *");
-    printf("\n        *                                                                      *");
-    printf("\n        *  4  -> insert end     5  -> insert before    6  -> insert after      *");
-    printf("\n        *                                                                      *");
-    printf("\n        *  7  -> delete beg     8  -> delete end       9  ->delete node        *");
-    printf("\n        *                                                                      *");
-    printf("\n        *  10 -> delete after   11 -> delete list      12 -> sort list         *");
-    printf("\n        *                                                                      *");
-    printf("\n        *  13 -> search data    0  -> exit                                     *");
-    printf("\n        ************************************************************************\n");
+    printf("\n************************************************************************");
+    printf("\n*                           MENU                                       *");
+    printf("\n*                                                                      *");
+    printf("\n*  1  -> create         2  -> display          3  -> insert beginning  *");
+    printf("\n*                                                                      *");
+    printf("\n*  4  -> insert end     5  -> insert before    6  -> insert after      *");
+    printf("\n*                                                                      *");
+    printf("\n*  7  -> delete beg     8  -> delete end       9  ->delete node        *");
+    printf("\n*                                                                      *");
+    printf("\n*  10 -> delete after   11 -> delete list      12 -> sort list         *");
+    printf("\n*                                                                      *");
+    printf("\n*  13 -> search data    0  -> exit                                     *");
+    printf("\n************************************************************************\n");
 
 
     int choice;
@@ -111,7 +111,7 @@ int main(){
     getchar();
     if(choice==0)
     {
-        printf("\n          code by: Saurav S Mehta");
+        printf("\n         code by: Saurav S Mehta");
         printf("\n\n         \"Thank You! \"\n");
     }
 
