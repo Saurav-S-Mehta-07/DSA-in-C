@@ -111,7 +111,7 @@ int main(){
     getchar();
     if(choice==0)
     {
-        printf("\n          code by: Saurav S Mehta        16-07-2025");
+        printf("\n          code by: Saurav S Mehta        10-07-2025");
         printf("\n\n         \"Thank You! \"\n");
     }
 
