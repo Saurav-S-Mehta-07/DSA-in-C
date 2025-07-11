@@ -28,6 +28,8 @@ int main(){
     start = display(start);
     start = insert_beg(start);
     start = display(start);
+    start = insert_end(start);
+    start = display(start);
   
 
     return 0;
@@ -98,4 +100,25 @@ Node *insert_beg(Node *start){
           start = new_node;
 
           return start;
+}
+
+Node *insert_end(Node *start){
+
+    Node *new_node;
+    new_node = (Node *)malloc(sizeof(Node));
+
+    int n;
+    printf("\nenter value to insert: ");
+    scanf("%d",&n);
+
+    new_node->data = n;
+    new_node->next = NULL;
+   ptr = start;
+   while(ptr->next!=NULL){
+    ptr = ptr->next;
+   }
+   ptr->next = new_node;
+   new_node->prev = ptr;
+
+   return start;
 }
