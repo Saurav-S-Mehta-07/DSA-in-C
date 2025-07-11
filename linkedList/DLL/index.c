@@ -28,16 +28,17 @@ Node *delete_beg(Node  *);
 
 Node *delete_end(Node *);
 
+Node *delete_after(Node *);
+
 int main(){
 
  
 
     start = create(start);
     start = display(start);
-    start = delete_end(start);
+    start = delete_after(start);
     start = display(start);
-    start = delete_end(start);
-    start = display(start);
+   
   
 
     return 0;
@@ -202,3 +203,24 @@ Node *delete_end(Node *start){
         return start;
 }
 
+Node *delete_after(Node *start){
+    ptr = start;
+    int val;
+    printf("\nenter data: ");
+    scanf("%d",&val);
+
+    while(ptr->data != val){
+        ptr = ptr->next;
+    }
+    
+    Node *temp;
+    temp = ptr->next;
+    ptr->next = temp->next;
+
+    if(temp->next!=NULL){
+        temp->next->prev = ptr;   
+    }
+    
+    free(temp);
+    return start;
+}
