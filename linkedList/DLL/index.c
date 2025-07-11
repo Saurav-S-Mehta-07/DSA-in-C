@@ -24,15 +24,17 @@ Node *insert_after(Node *);
 
 Node *insert_before(Node *);
 
+Node *delete_beg(Node  *);
+
 int main(){
 
  
 
     start = create(start);
     start = display(start);
-    start = insert_before(start);
+    start = delete_beg(start);
     start = display(start);
-    start = insert_before(start);
+    start = delete_beg(start);
     start = display(start);
   
 
@@ -174,4 +176,13 @@ Node *insert_before(Node *start){
         ptr->prev = new_node;
   
         return start;
+}
+
+Node *delete_beg(Node  *start){
+    ptr = start;
+    start = start->next;
+    start->prev = NULL;
+    free(ptr);
+    printf("\n");
+    return start;
 }
