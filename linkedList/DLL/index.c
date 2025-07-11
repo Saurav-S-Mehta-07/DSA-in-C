@@ -34,6 +34,8 @@ Node *delete_before(Node *);
 
 Node *delete_node(Node *);
 
+Node *delete_list(Node *);
+
 
 int main(){
 
@@ -41,7 +43,7 @@ int main(){
 
     start = create(start);
     start = display(start);
-    start = delete_node(start);
+    start = delete_list(start);
     start = display(start);
    
   
@@ -188,10 +190,16 @@ Node *insert_before(Node *start){
 
 Node *delete_beg(Node  *start){
     ptr = start;
-    start = start->next;
-    start->prev = NULL;
+
+    if(start->next != NULL){
+      start = start->next;
+      start->prev = NULL;
+      free(ptr);
+      return start;
+    }
+
+    start = NULL;
     free(ptr);
-    printf("\n");
     return start;
 }
 
@@ -269,4 +277,12 @@ Node *delete_node(Node *start){
      free(ptr);
 
      return start;
+}
+
+Node *delete_list(Node *start){
+    while(start!=NULL){
+        start = delete_beg(start);
+    }
+    printf("\ndeleted");
+    return start;
 }
