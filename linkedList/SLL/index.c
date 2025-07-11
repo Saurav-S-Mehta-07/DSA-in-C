@@ -50,7 +50,7 @@ int main(){
     printf("\n*                                                                      *");
     printf("\n*  10 -> delete after   11 -> delete list      12 -> sort list         *");
     printf("\n*                                                                      *");
-    printf("\n*  13 -> search data    0  -> exit                                     *");
+    printf("\n*  13 -> search data    -1  -> exit                                     *");
     printf("\n************************************************************************\n");
 
 
@@ -62,8 +62,7 @@ int main(){
     {
         switch(choice)
         {
-            case 1: printf("\nCREATE LIST");
-                    start = create(start);
+            case 1: start = create(start);
                     break;
             case 2: start = display(start);
                     printf("\n");
@@ -118,7 +117,10 @@ int main(){
 }
 
 Node *create(Node *start){
-    start = delete_list(start);
+    if(start!=NULL){
+      start = delete_list(start);
+    }
+    printf("\nCREATE LIST\n");
     Node *new_node;
     int data;
     printf("\nenter -1 to exit \n");
