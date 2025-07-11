@@ -38,26 +38,97 @@ Node *delete_list(Node *);
 
 
 int main(){
+ printf("\n************************************************************************");
+    printf("\n*                           MENU                                       *");
+    printf("\n*                                                                      *");
+    printf("\n*  1  -> create         2  -> display          3  -> insert beginning  *");
+    printf("\n*                                                                      *");
+    printf("\n*  4  -> insert end     5  -> insert before    6  -> insert after      *");
+    printf("\n*                                                                      *");
+    printf("\n*  7  -> delete beg     8  -> delete end       9  ->delete node        *");
+    printf("\n*                                                                      *");
+    printf("\n*  10 -> delete after   11 -> delete list      12 -> sort list         *");
+    printf("\n*                                                                      *");
+    printf("\n*  13 -> search data    -1  -> exit                                     *");
+    printf("\n************************************************************************\n");
 
- 
 
-    start = create(start);
-    start = display(start);
-    start = delete_list(start);
-    start = display(start);
-   
-  
+    int choice;
+    printf("\nenter choice: ");
+    scanf("%d",&choice);
 
+    while(choice!=0)
+    {
+        switch(choice)
+        {
+            case 1: start = create(start);
+                    break;
+            case 2: start = display(start);
+                    printf("\n");
+                    break;  
+            case 3: printf("\nNEW NODE WILL BE INSERTED AT THE BEGINING OF LIST\n");
+                    start = insert_beg(start);
+                    break;
+            case 4: printf("\nNEW NODE WILL BE INSERTED AT THE END OF THE LIST\n");
+                    start = insert_end(start);
+                    break;
+            case 5: printf("\nNEW NODE WILL BE INSERTED  BEFORE A NODE IN THE LIST\n");
+                    start = insert_before(start);
+                    break;
+            case 6: printf("\nNEW NODE WILL BE INSERTED AFTER A NODE IN THE LIST\n");
+                    start = insert_after(start);
+                    break;
+            case 7: printf("\nNODE DELETED FROM THE BEGINING OF THE LIST\n");
+                    start = delete_beg(start);
+                    break;
+            case 8: printf("\nNODE DELETED FROM THE END OF THE LIST\n");
+                    start = delete_end(start);
+                    break;
+            case 9: printf("\nA NODE WILL BE DELETED FROM A LIST\n");
+                    start = delete_node(start);
+                    break;
+            case 10: printf("\nA NODE WILL BE DELETED AFTER A NODE IN THE LIST\n");
+                    start = delete_after(start);
+                    break;
+            case 11: printf("\nA NODE WILL BE DELETED BEFORE A NODE IN THE LIST\n");
+                    start = delete_after(start);
+                    break;
+            case 12: printf("\nTHE ENTIRE LIST WILL BE DELETED\n");
+                    start = delete_list(start);
+                    break;
+            // case 13: printf("\nLIST WILL BE SORTED\n");
+            //         start = sort_list(start);
+            //         break;
+            // case 14: printf("\nA NODE WILL BE SEARCHED IN THE LIST\n");
+            //          start = search(start);
+            //          break;
+            default: printf("\n INVALID CHOICE!\n");
+        }
+       printf("\nenter choice: ");
+       scanf("%d",&choice);
+    }
+
+    getchar();
+    if(choice==0)
+    {
+        printf("\n         code by: Saurav S Mehta");
+        printf("\n\n         \"Thank You! \"\n");
+    }
     return 0;
 
 }
 
 Node *create(Node *start){
-    Node *new_node;
 
+    if(start!=NULL){
+        start = delete_list(start);
+    }
+    printf("\nCREATE LIST\n");
+
+    Node *new_node;
     ptr = start;
     int data;
-    printf("enter data or -1 to exit: ");
+    printf("\nenter data or -1 to exit: ");
     scanf("%d",&data);
 
     while(data!=-1){
@@ -80,54 +151,77 @@ Node *create(Node *start){
             new_node ->next = NULL;  
         }
 
-        printf("enter data or -1 to exit: ");
+        printf("\nenter data or -1 to exit: ");
         scanf("%d",&data);
     }
 
+    if(start == NULL)
+    {
+      printf("\nYOU ENTERED NO DATA ELEMENTS FOR LIST\n");
+      return start;
+    }
+
+    printf("\nLIST CREATED\n");
     return start;
 
 }
 
 Node *display(Node *start){
-    ptr = start;
-    while(ptr!=NULL){
-           printf("%d\t",ptr->data);
-           ptr = ptr->next;
+
+    if(start==NULL){
+        printf("\nLIST is empty.");
+        return start;
     }
 
+    printf("\nLIST: ");
+    ptr = start;
+    while(ptr!=NULL){
+           printf("\t%d",ptr->data);
+           ptr = ptr->next;
+    }
+    printf("\n");
     return start;
 }
 
 Node *insert_beg(Node *start){
-
-          int n;
+    if(start==NULL){
+        printf("\nLIST is empty.");
+        return start;
+    }
+          int data;
           printf("\nenter value to insert: ");
-          scanf("%d",&n);
+          scanf("%d",&data);
 
           Node *new_node;
           new_node = (Node *)malloc(sizeof(Node));
 
-          new_node->data =  n;
+          new_node->data =  data;
 
           new_node->prev = NULL;
 
           new_node->next = start;
           
           start = new_node;
-
+          
+          printf("\n%d inserted.\n",data);
           return start;
 }
 
 Node *insert_end(Node *start){
 
+    if(start==NULL){
+        printf("\nLIST is empty.");
+        return start;
+    }
+
     Node *new_node;
     new_node = (Node *)malloc(sizeof(Node));
 
-    int n;
+    int data;
     printf("\nenter value to insert: ");
-    scanf("%d",&n);
+    scanf("%d",&data);
 
-    new_node->data = n;
+    new_node->data = data;
     new_node->next = NULL;
    ptr = start;
    while(ptr->next!=NULL){
@@ -135,7 +229,7 @@ Node *insert_end(Node *start){
    }
    ptr->next = new_node;
    new_node->prev = ptr;
-
+   printf("\n%d inserted.\n",data);
    return start;
 }
 
@@ -146,11 +240,13 @@ Node *insert_after(Node *start){
         ptr = start;
 
         int val;
-        printf("\nenter value: "); scanf("%d",&val);
-        int n;
-        printf("\nenter data : ");scanf("%d",&n);
+        printf("\nenter data from list after which you want to insert new data: ");
+        scanf("%d",&val);
+        int data;
+        printf("\nenter data to insert: ");
+        scanf("%d",&data);
 
-        new_node->data = n;
+        new_node->data = data;
    
         while(ptr->data!=val){
             ptr = ptr->next;
@@ -159,22 +255,31 @@ Node *insert_after(Node *start){
         new_node->next = ptr->next;
         ptr->next = new_node;
         new_node->prev = ptr;
-  
+        
+        printf("\n%d inserted.\n",data);
         return start;
        
 }
 
 Node *insert_before(Node *start){
+
+    if(start==NULL){
+        printf("\nLIST is empty.");
+        return start;
+    }
+
        Node *new_node;
        new_node = (Node  *)malloc(sizeof(Node));
         ptr = start;
 
         int val;
-        printf("\nenter value: "); scanf("%d",&val);
-        int n;
-        printf("\nenter data : ");scanf("%d",&n);
+        printf("\nenter data from the list before which you want to insert new data: ");
+        scanf("%d",&val);
+        int data;
+        printf("\nenter data to insert : ");
+        scanf("%d",&data);
 
-        new_node->data = n;
+        new_node->data = data;
    
         while(ptr->data!=val){
             ptr = ptr->next;
@@ -184,7 +289,7 @@ Node *insert_before(Node *start){
         new_node->prev = ptr->prev;
         ptr->prev->next = new_node;
         ptr->prev = new_node;
-  
+        printf("\n%d inserted.\n",data);  
         return start;
 }
 
@@ -197,7 +302,7 @@ Node *delete_beg(Node  *start){
       free(ptr);
       return start;
     }
-
+    
     start = NULL;
     free(ptr);
     return start;
@@ -208,21 +313,19 @@ Node *delete_end(Node *start){
         while(ptr->next != NULL){
             ptr = ptr->next;
         }
-
+        printf("\n%d deleted.\n",ptr->data);
         ptr->prev->next = NULL;
         free(ptr);
-        printf("\n");
-
         return start;
 }
 
 Node *delete_after(Node *start){
     ptr = start;
-    int val;
-    printf("\nenter data: ");
-    scanf("%d",&val);
+    int data;
+    printf("\nenter data from the list after which you want to delete the node: ");
+    scanf("%d",&data);
 
-    while(ptr->data != val){
+    while(ptr->data != data){
         ptr = ptr->next;
     }
     
@@ -233,18 +336,18 @@ Node *delete_after(Node *start){
     if(temp->next!=NULL){
         temp->next->prev = ptr;   
     }
-
+    printf("\n%d deleted.\n",temp->data);
     free(temp);
     return start;
 }
 
 Node *delete_before(Node *start){
     ptr = start;
-    int val;
-    printf("\nenter data: ");
-    scanf("%d",&val);
+    int data;
+    printf("\nenter data from the list before which you want to delete: ");
+    scanf("%d",&data);
 
-    while(ptr->data != val){
+    while(ptr->data != data){
         ptr = ptr->next;
     }
     
@@ -255,27 +358,27 @@ Node *delete_before(Node *start){
     }else{
        ptr->prev = temp->prev;
        temp->prev->next = ptr;  
+       printf("\n%d deleted.\n",temp->data);
        free(temp);
     }
-
     return start;
 }
 
 
 Node *delete_node(Node *start){
     ptr = start;
-     int val;
-     printf("\nenter value: ");
-     scanf("%d",&val);
+     int data;
+     printf("\nenter data from list, which you want to delete: ");
+     scanf("%d",&data);
 
-     while(ptr->data!=val){
+     while(ptr->data!=data){
         ptr = ptr->next;
      }
 
      ptr->next->prev = ptr->prev;
      ptr->prev->next = ptr->next;
      free(ptr);
-
+     printf("\nnode deleted\n");
      return start;
 }
 
