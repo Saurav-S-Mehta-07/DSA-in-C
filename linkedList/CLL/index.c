@@ -79,10 +79,10 @@ int main(){
             case 6: printf("\nNEW NODE WILL BE INSERTED AFTER A NODE IN THE LIST\n");
                     start = insert_after(start);
                     break;
-            case 7: printf("\nNODE DELETED FROM THE BEGINING OF THE LIST\n");
+            case 7: printf("\nNODE WILL BE DELETED FROM THE BEGINING OF THE LIST\n");
                     start = delete_beg(start);
                     break;
-            case 8: printf("\nNODE DELETED FROM THE END OF THE LIST\n");
+            case 8: printf("\nNODE WILL BE DELETED FROM THE END OF THE LIST\n");
                     start = delete_end(start);
                     break;
             case 9: printf("\nA NODE WILL BE DELETED FROM A LIST\n");
