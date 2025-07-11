@@ -1,0 +1,101 @@
+//Doubly linked list
+
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct node{
+    struct node *prev;
+    int data;
+    struct node *next;
+}Node;
+
+Node *start = NULL;
+Node *ptr;
+
+Node *create(Node *);
+
+Node *display(Node *);
+
+Node *insert_beg(Node *);
+
+Node *insert_end(Node *);
+
+int main(){
+
+ 
+
+    start = create(start);
+    start = display(start);
+    start = insert_beg(start);
+    start = display(start);
+  
+
+    return 0;
+
+}
+
+Node *create(Node *start){
+    Node *new_node;
+
+    ptr = start;
+    int data;
+    printf("enter data or -1 to exit: ");
+    scanf("%d",&data);
+
+    while(data!=-1){
+       
+        new_node = (Node *)malloc(sizeof(Node));
+
+        new_node->data = data;
+
+        if(start == NULL){
+            new_node->prev = NULL;
+            new_node->next = NULL;
+            start = new_node;
+        }else{
+            ptr = start;
+            while(ptr->next!=NULL){
+                ptr = ptr->next;
+            }
+            ptr->next = new_node;
+            new_node->prev = ptr;
+            new_node ->next = NULL;  
+        }
+
+        printf("enter data or -1 to exit: ");
+        scanf("%d",&data);
+    }
+
+    return start;
+
+}
+
+Node *display(Node *start){
+    ptr = start;
+    while(ptr!=NULL){
+           printf("%d\t",ptr->data);
+           ptr = ptr->next;
+    }
+
+    return start;
+}
+
+Node *insert_beg(Node *start){
+
+          int n;
+          printf("\nenter value to insert: ");
+          scanf("%d",&n);
+
+          Node *new_node;
+          new_node = (Node *)malloc(sizeof(Node));
+
+          new_node->data =  n;
+
+          new_node->prev = NULL;
+
+          new_node->next = start;
+          
+          start = new_node;
+
+          return start;
+}
