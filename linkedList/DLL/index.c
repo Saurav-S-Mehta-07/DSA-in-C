@@ -20,15 +20,17 @@ Node *insert_beg(Node *);
 
 Node *insert_end(Node *);
 
+Node *insert_after(Node *);
+
 int main(){
 
  
 
     start = create(start);
     start = display(start);
-    start = insert_beg(start);
+    start = insert_after(start);
     start = display(start);
-    start = insert_end(start);
+    start = insert_after(start);
     start = display(start);
   
 
@@ -121,4 +123,29 @@ Node *insert_end(Node *start){
    new_node->prev = ptr;
 
    return start;
+}
+
+Node *insert_after(Node *start){
+
+       Node *new_node;
+       new_node = (Node  *)malloc(sizeof(Node));
+        ptr = start;
+
+        int val;
+        printf("\nenter value: "); scanf("%d",&val);
+        int n;
+        printf("\nenter data : ");scanf("%d",&n);
+
+        new_node->data = n;
+   
+        while(ptr->data!=val){
+            ptr = ptr->next;
+        }
+
+        new_node->next = ptr->next;
+        ptr->next = new_node;
+        new_node->prev = ptr;
+  
+        return start;
+       
 }
