@@ -26,15 +26,17 @@ Node *insert_before(Node *);
 
 Node *delete_beg(Node  *);
 
+Node *delete_end(Node *);
+
 int main(){
 
  
 
     start = create(start);
     start = display(start);
-    start = delete_beg(start);
+    start = delete_end(start);
     start = display(start);
-    start = delete_beg(start);
+    start = delete_end(start);
     start = display(start);
   
 
@@ -186,3 +188,17 @@ Node *delete_beg(Node  *start){
     printf("\n");
     return start;
 }
+
+Node *delete_end(Node *start){
+        ptr = start;
+        while(ptr->next != NULL){
+            ptr = ptr->next;
+        }
+
+        ptr->prev->next = NULL;
+        free(ptr);
+        printf("\n");
+
+        return start;
+}
+
