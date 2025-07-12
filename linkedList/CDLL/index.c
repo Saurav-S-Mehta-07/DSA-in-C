@@ -24,15 +24,19 @@ Node *delete_beg(Node *);
 
 Node *delete_end(Node *);
 
+Node *delete_node(Node *);
+
+Node *delete_list(Node *);
+
 int main(){
 
     start = create(start);
     start = display(start);
     printf("\n");
-    start = delete_end(start);
+    start = create(start);
     start = display(start);
     printf("\n");
-    start = delete_end(start);
+    start = delete_list(start);
     start = display(start);
     start = create(start);
     return 0;
@@ -40,6 +44,10 @@ int main(){
 }
 
 Node *create(Node *start){
+
+    if(start!=NULL){
+        start = delete_list(start);
+    }
 
     Node *new_node;
     
@@ -80,9 +88,10 @@ Node *display(Node *start){
 
     if(start == NULL){
         printf("\nlist is empty\n");
+        start = NULL;
         return start;
     }
-    
+
     ptr = start;
     while(ptr->next!=start){
       printf("\t%d",ptr->data);
@@ -94,6 +103,11 @@ Node *display(Node *start){
 }
 
 Node *insert_beg(Node *start){
+    if(start == NULL){
+        printf("\nlist is empty\n");
+        start = NULL;
+        return start;
+    }    
     Node *new_node;
     new_node = (Node *)malloc(sizeof(Node));
 
@@ -114,6 +128,11 @@ Node *insert_beg(Node *start){
 }
 
 Node *insert_end(Node *start){
+    if(start == NULL){
+        printf("\nlist is empty\n");
+        start = NULL;
+        return start;
+    }    
  Node *new_node;
     new_node = (Node *)malloc(sizeof(Node));
 
@@ -132,20 +151,32 @@ Node *insert_end(Node *start){
 }
 
 Node *delete_beg(Node *start){
-
+    if(start == NULL){
+        printf("\nlist is empty\n");
+        start = NULL;
+        return start;
+    }
       ptr = start;
+
+      
 
       start->next->prev = start->prev;
       start->prev->next = start->next;
       start = start->next;
-      free(ptr);
 
+      if(ptr == start){
+        start = NULL;
+      }
+      free(ptr);
       return start;
 }
 
-
 Node *delete_end(Node *start){
-
+    if(start == NULL){
+        printf("\nlist is empty\n");
+        start = NULL;
+        return start;
+    }
     ptr = start;
     ptr = ptr->prev;
 
@@ -162,3 +193,52 @@ Node *delete_end(Node *start){
 
     return start;
 }
+
+Node *delete_node(Node *start){
+
+     if(start == NULL){
+        printf("\nlist is empty\n");
+        start = NULL;
+        return start;
+    }   
+
+    ptr = start;
+    int data;
+    printf("\nenter data : ");
+    scanf("%d",&data);
+    if(ptr->data == data){
+        start = delete_beg(start);
+        printf("i m here");
+        return start;
+    }
+    else{
+        while(ptr->data != data){
+            if(ptr->next == start){
+                printf("\n%d not in list\n",data);
+                return start;
+            }
+            ptr = ptr->next;
+        }
+        ptr->prev->next = ptr->next;
+        ptr->next->prev = ptr->prev;
+        free(ptr);
+        return start;
+    }
+
+}
+
+Node *delete_list(Node *start){
+
+     if(start == NULL){
+        printf("\nlist is empty\n");
+        start = NULL;
+        return start;
+    }
+
+    ptr = start;
+    while(start!=NULL){
+        start = delete_beg(start);
+    }
+    return start;
+}
+
