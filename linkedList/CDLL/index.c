@@ -18,13 +18,15 @@ Node *display(Node *);
 
 Node *insert_beg(Node *);
 
+Node *insert_end(Node *);
+
 int main(){
 
     start = create(start);
     start = display(start);
-    start = insert_beg(start);
+    start = insert_end(start);
     start = display(start);
-    start = insert_beg(start);
+    start = insert_end(start);
     start = display(start);
     return 0;
 
@@ -96,4 +98,22 @@ Node *insert_beg(Node *start){
 
     return start;
 
+}
+
+Node *insert_end(Node *start){
+ Node *new_node;
+    new_node = (Node *)malloc(sizeof(Node));
+
+    int data;
+    printf("\nenter data: ");
+    scanf("%d",&data);
+
+    new_node->data = data;
+
+    new_node->prev = start->prev;
+    new_node->next = start;
+    start->prev->next = new_node;
+    start->prev = new_node;
+
+    return start;    
 }
