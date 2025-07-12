@@ -29,11 +29,12 @@ int main(){
     start = create(start);
     start = display(start);
     printf("\n");
-    start = delete_beg(start);
+    start = delete_end(start);
     start = display(start);
     printf("\n");
-    start = delete_beg(start);
+    start = delete_end(start);
     start = display(start);
+    start = create(start);
     return 0;
 
 }
@@ -76,6 +77,12 @@ Node *create(Node *start){
 }
 
 Node *display(Node *start){
+
+    if(start == NULL){
+        printf("\nlist is empty\n");
+        return start;
+    }
+    
     ptr = start;
     while(ptr->next!=start){
       printf("\t%d",ptr->data);
@@ -134,4 +141,24 @@ Node *delete_beg(Node *start){
       free(ptr);
 
       return start;
+}
+
+
+Node *delete_end(Node *start){
+
+    ptr = start;
+    ptr = ptr->prev;
+
+    if(ptr==start){
+        free(start);
+        start = NULL;
+        return start;
+    }
+
+    start->prev = ptr->prev;
+    ptr->prev->next = start;
+
+    free(ptr);
+
+    return start;
 }
