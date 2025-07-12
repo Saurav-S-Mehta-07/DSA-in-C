@@ -41,8 +41,9 @@ Node *sort_list(Node *);
 Node *search(Node *);
 
 
-int main(){
- printf("\n************************************************************************");
+int main()
+{
+    printf("\n************************************************************************");
     printf("\n*                           MENU                                       *");
     printf("\n*                                                                      *");
     printf("\n*  1  -> create         2  -> display          3  -> insert beginning  *");
