@@ -36,6 +36,10 @@ Node *delete_node(Node *);
 
 Node *delete_list(Node *);
 
+Node *sort_list(Node *);
+
+Node *search(Node *);
+
 
 int main(){
  printf("\n************************************************************************");
@@ -47,9 +51,9 @@ int main(){
     printf("\n*                                                                      *");
     printf("\n*  7  -> delete beg     8  -> delete end       9  ->delete node        *");
     printf("\n*                                                                      *");
-    printf("\n*  10 -> delete after   11 -> delete list      12 -> sort list         *");
+    printf("\n*  10 -> delete after   11 -> delete before    12 -> delete list       *");
     printf("\n*                                                                      *");
-    printf("\n*  13 -> search data    -1  -> exit                                     *");
+    printf("\n*  13 -> sort list      14 -> search element    0  -> exit            *");
     printf("\n************************************************************************\n");
 
 
@@ -95,12 +99,12 @@ int main(){
             case 12: printf("\nTHE ENTIRE LIST WILL BE DELETED\n");
                     start = delete_list(start);
                     break;
-            // case 13: printf("\nLIST WILL BE SORTED\n");
-            //         start = sort_list(start);
-            //         break;
-            // case 14: printf("\nA NODE WILL BE SEARCHED IN THE LIST\n");
-            //          start = search(start);
-            //          break;
+            case 13: printf("\nLIST WILL BE SORTED\n");
+                    start = sort_list(start);
+                    break;
+            case 14: printf("\nA NODE WILL BE SEARCHED IN THE LIST\n");
+                     start = search(start);
+                     break;
             default: printf("\n INVALID CHOICE!\n");
         }
        printf("\nenter choice: ");
@@ -465,5 +469,58 @@ Node *delete_list(Node *start){
     }
 
     printf("\nentire list deleted");
+    return start;
+}
+
+Node *sort_list(Node *start){
+
+    if(start==NULL){
+        printf("\nLIST is empty.\n");
+        return start;
+    }   
+
+        Node *ptr1 , *ptr2;
+        ptr1 = ptr2 =start;
+
+        int temp;
+
+        while(ptr1->next!=NULL)
+        {
+            ptr2 = ptr1->next;
+            while(ptr2!=NULL){
+                if(ptr1->data > ptr2->data){
+                    temp = ptr1->data;
+                    ptr1->data = ptr2->data;
+                    ptr2->data = temp;
+                }
+                ptr2 = ptr2->next;
+            }
+            ptr1 = ptr1->next;
+        }
+        printf("\nlist sorted\n");
+        return start;
+}
+
+Node *search(Node *start){
+
+    if(start==NULL){
+        printf("\nLIST is empty.\n");
+        return start;
+    } 
+    
+    int data;
+    printf("\nenter data to search in list: ");
+    scanf("%d",&data);
+
+
+    ptr = start;
+    while(ptr->data != data){
+        if(ptr->next == NULL){
+            printf("\n%d not found in the list\n",data);
+            return start;
+        }
+        ptr = ptr->next;
+    }
+    printf("\n%d found at position %d.\n",data,ptr);
     return start;
 }
