@@ -50,7 +50,7 @@ int main(){
     printf("\n*                                                                      *");
     printf("\n*  10 -> delete after   11 -> delete list      12 -> sort list         *");
     printf("\n*                                                                      *");
-    printf("\n*  13 -> search data    -1  -> exit                                     *");
+    printf("\n*  13 -> search data    0  -> exit                                     *");
     printf("\n************************************************************************\n");
 
 
