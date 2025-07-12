@@ -20,13 +20,19 @@ Node *insert_beg(Node *);
 
 Node *insert_end(Node *);
 
+Node *delete_beg(Node *);
+
+Node *delete_end(Node *);
+
 int main(){
 
     start = create(start);
     start = display(start);
-    start = insert_end(start);
+    printf("\n");
+    start = delete_beg(start);
     start = display(start);
-    start = insert_end(start);
+    printf("\n");
+    start = delete_beg(start);
     start = display(start);
     return 0;
 
@@ -116,4 +122,16 @@ Node *insert_end(Node *start){
     start->prev = new_node;
 
     return start;    
+}
+
+Node *delete_beg(Node *start){
+
+      ptr = start;
+
+      start->next->prev = start->prev;
+      start->prev->next = start->next;
+      start = start->next;
+      free(ptr);
+
+      return start;
 }
